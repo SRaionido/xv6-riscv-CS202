@@ -688,7 +688,16 @@ int sys_info (int n)
   // printf("HEYOOOOO %d\n", n);
   if (n == 0) {
     printf("PUT THE ACTIVE PROCESSES IN THE BAG\n");
-    return 0;
+    struct proc *p;
+    int cnt = 0;
+
+    for (p = proc; p < &proc[NPROC]; p++) {
+      if (p->state != UNUSED) {
+        cnt++;
+      }
+    }
+    
+    return cnt;
   }
   else if (n == 1) {
     printf("WHERE IS MY NUMBER OF SYSTEM CALLS?\n");
