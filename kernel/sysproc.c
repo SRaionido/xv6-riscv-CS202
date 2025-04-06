@@ -94,6 +94,6 @@ uint64 sys_sysinfo(void)
 {
   int n;
   argint(0, &n);
-  sys_info(n);
-  return 0;
+  int out = sys_info(n);
+  return out;
 }
