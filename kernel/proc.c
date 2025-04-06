@@ -681,3 +681,21 @@ procdump(void)
     printf("\n");
   }
 }
+
+// Lab 1
+void sys_info (int n)
+{
+  // printf("HEYOOOOO %d\n", n);
+  if (n == 0) {
+    printf("PUT THE ACTIVE PROCESSES IN THE BAG\n");
+  }
+  else if (n == 1) {
+    printf("WHERE IS MY NUMBER OF SYSTEM CALLS?\n");
+  }
+  else if (n == 2) {
+    printf("The number of free memory pages\n");
+  }
+  else {
+    printf("REPLACE WITH return -1 later\n");
+  }
+}
