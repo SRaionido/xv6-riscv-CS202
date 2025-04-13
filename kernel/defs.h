@@ -107,6 +107,8 @@ int             either_copyout(int user_dst, uint64 dst, void *src, uint64 len);
 int             either_copyin(void *dst, int user_src, uint64 src, uint64 len);
 void            procdump(void);
 int            sys_info(int); // Lab 1
+int            freemem(void); // Lab 1 part 1 helper function
+
 
 // swtch.S
 void            swtch(struct context*, struct context*);

@@ -683,11 +683,13 @@ procdump(void)
 }
 
 // Lab 1
+
+extern int syscall_counter; // IMPLEMENTED FOR SYSINFO (SL)
 int sys_info (int n)
 {
   // printf("HEYOOOOO %d\n", n);
   if (n == 0) {
-    printf("PUT THE ACTIVE PROCESSES IN THE BAG\n");
+    // printf("PUT THE ACTIVE PROCESSES IN THE BAG\n");
     struct proc *p;
     int cnt = 0;
 
@@ -700,12 +702,12 @@ int sys_info (int n)
     return cnt;
   }
   else if (n == 1) {
-    printf("WHERE IS MY NUMBER OF SYSTEM CALLS?\n");
-    return 0;
+    // printf("WHERE IS MY NUMBER OF SYSTEM CALLS?\n");
+    return syscall_counter;
   }
   else if (n == 2) {
-    printf("The number of free memory pages\n");
-    return 0;
+    // printf("The number of free memory pages\n");
+    return freemem();
   }
   else {
     printf("ERROR BAD INPUT :(\n");
