@@ -703,7 +703,8 @@ int sys_info (int n)
   }
   else if (n == 1) {
     // printf("WHERE IS MY NUMBER OF SYSTEM CALLS?\n");
-    return syscall_counter;
+    syscall_counter++; //
+    return syscall_counter-1;
   }
   else if (n == 2) {
     // printf("The number of free memory pages\n");
@@ -715,3 +716,10 @@ int sys_info (int n)
   }
   return -1;
 }
+
+/////////////
+
+int procinfo (int n ){
+  return -1; 
+}
+////////////

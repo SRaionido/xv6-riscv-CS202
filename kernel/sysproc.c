@@ -97,3 +97,7 @@ uint64 sys_sysinfo(void)
   int out = sys_info(n);
   return out;
 }
+
+uint64 sys_procinfo(void){
+  return 1; 
+}

@@ -104,6 +104,7 @@ extern uint64 sys_link(void);
 extern uint64 sys_mkdir(void);
 extern uint64 sys_close(void);
 extern uint64 sys_sysinfo(void); // lab 1 declaration
+extern uint64 sys_procinfo(void); // lab1 part 
 
 // An array mapping syscall numbers from syscall.h
 // to the function that handles the system call.
@@ -130,6 +131,7 @@ static uint64 (*syscalls[])(void) = {
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
 [SYS_sysinfo] sys_sysinfo,  // lab 1 syscall entry
+[SYS_procinfo] sys_procinfo, // lab1 part 2 
 };
 
 void
@@ -142,7 +144,7 @@ syscall(void)
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
     // Use num to lookup the system call function for num, call it,
     // and store its return value in p->trapframe->a0
-    if (num != SYS_sysinfo) syscall_counter++;
+    if (num != SYS_sysinfo) syscall_counter++; // 
     p->trapframe->a0 = syscalls[num]();
   } else {
     printf("%d %s: unknown sys call %d\n",
