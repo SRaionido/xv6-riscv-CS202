@@ -1,4 +1,12 @@
 struct stat;
+//////////////////
+struct pinfo;/*
+struct pinfo {
+int ppid;
+int syscall_count;
+int page_usage;
+};//*/
+/////////////////
 
 // system calls
 int fork(void);
@@ -39,4 +47,6 @@ void free(void*);
 int atoi(const char*);
 int memcmp(const void *, const void *, uint);
 void *memcpy(void *, const void *, uint);
+//lab1 added system calls
 int sysinfo(int); // Lab 1 sysinfo
+int procinfo(struct pinfo *); // lab 1 p2 

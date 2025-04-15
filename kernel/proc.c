@@ -731,7 +731,7 @@ int procinfo(struct pinfo *in){
 
   in->syscall_count = syscall_counter; 
   in->ppid = myproc()->pid; 
-  in->page_usage = freemem() ;
+  in->page_usage = freemem() ; // make a process 
   return 0; 
 
   //return -1; 
