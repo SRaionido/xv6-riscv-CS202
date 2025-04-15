@@ -12,6 +12,14 @@ struct proc proc[NPROC];
 
 struct proc *initproc;
 
+//////////////////////////////////
+struct pinfo {
+int ppid;
+int syscall_count;
+int page_usage;
+};
+//////////////////////////////////
+
 int nextpid = 1;
 struct spinlock pid_lock;
 
@@ -719,7 +727,21 @@ int sys_info (int n)
 
 /////////////
 
-int procinfo (int n ){
-  return -1; 
+int procinfo(struct pinfo *in){
+
+  in->syscall_count = syscall_counter; 
+  in->ppid = myproc()->pid; 
+  in->page_usage = freemem() ;
+  return 0; 
+
+  //return -1; 
 }
+
+/*
+struct pinfo {
+int ppid;
+int syscall_count;
+int page_usage;
+};
+*/
 ////////////
