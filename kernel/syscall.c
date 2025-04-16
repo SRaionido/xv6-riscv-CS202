@@ -142,8 +142,10 @@ syscall(void)
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
     // Use num to lookup the system call function for num, call it,
     // and store its return value in p->trapframe->a0
-    if (num != SYS_sysinfo) syscall_counter++;
+    // if (num != SYS_sysinfo) syscall_counter++; COMMENTED OUT
     p->trapframe->a0 = syscalls[num]();
+    // Increment the syscall counter AFTER the call returns.
+    p->syscall_count++;
   } else {
     printf("%d %s: unknown sys call %d\n",
             p->pid, p->name, num);
