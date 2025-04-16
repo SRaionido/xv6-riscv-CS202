@@ -1,4 +1,5 @@
 struct stat;
+// #include "../kernel/pinfo.h" // New header
 
 // system calls
 int fork(void);
@@ -22,6 +23,7 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+int procinfo(struct pinfo*); //Added
 
 // ulib.c
 int stat(const char*, struct stat*);
