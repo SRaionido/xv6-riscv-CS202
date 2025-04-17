@@ -6,6 +6,15 @@
 #include "spinlock.h"
 #include "proc.h"
 
+//struct pinfo;
+////
+struct pinfo {
+int ppid;
+int syscall_count;
+int page_usage;
+};
+///////
+
 uint64
 sys_exit(void)
 {
@@ -99,5 +108,18 @@ uint64 sys_sysinfo(void)
 }
 
 uint64 sys_procinfo(void){
-  return 1; 
+    struct pinfo param;
+    uint64 fdarray;
+    int fd0= -1; 
+    argaddr( 0, &fdarray);
+    int out =  procinfo(&param);
+    struct proc* p = myproc();
+      if(copyout(p->pagetable, fdarray, (char*)&fd0, sizeof(fd0)) < 0){
+        return -1;
+      }
+  
+
+  //param.ppid= p->pid;
+  return out; 
+ 
 }

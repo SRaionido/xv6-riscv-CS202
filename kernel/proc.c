@@ -727,11 +727,13 @@ int sys_info (int n)
 
 /////////////
 
-int procinfo(struct pinfo *in){
+int procinfo (struct pinfo *in){
 
-  in->syscall_count = syscall_counter; 
-  in->ppid = myproc()->pid; 
+  
+  in->syscall_count =   1 ; 
+  in->ppid = myproc()->parent->pid; 
   in->page_usage = freemem() ; // make a process 
+  //printf("\nprocinfo function was call \n");
   return 0; 
 
   //return -1; 
