@@ -132,6 +132,7 @@ allocproc(void)
 found:
   p->pid = allocpid();
   p->state = USED;
+  p->proc_syscall_count = 0; // Lab 1 - part 2 SL
 
   // Allocate a trapframe page.
   if((p->trapframe = (struct trapframe *)kalloc()) == 0){
@@ -730,9 +731,9 @@ int sys_info (int n)
 int procinfo (struct pinfo *in){
 
   
-  in->syscall_count =   1 ; 
+  in->syscall_count = myproc()->proc_syscall_count - 1; // get the syscall count 
   in->ppid = myproc()->parent->pid; 
-  in->page_usage = freemem() ; // make a process 
+  in->page_usage = 0; // make a process 
   //printf("\nprocinfo function was call \n");
   return 0; 
 

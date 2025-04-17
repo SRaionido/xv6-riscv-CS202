@@ -36,13 +36,10 @@ int main(int argc, char *argv[])
         if (ret == 0) { // child process
              struct pinfo param;
             malloc(mem); // this triggers a syscall
-             for (int j = 0; j < 10; j++)
-             {
+            for (int j = 0; j < 10; j++)
                 procinfo(&param); // calls 10 times
-                }
-             printf("[procinfo %d] ppid: %d, syscalls: %d, page usage: %d\n",
-                 getpid(), param.ppid, param.syscall_count, param.page_usage);
-                 
+            printf("[procinfo %d] ppid: %d, syscalls: %d, page usage: %d\n",
+                getpid(), param.ppid, param.syscall_count, param.page_usage);
             while (1);
         }
         else { // parent
