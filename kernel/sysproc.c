@@ -110,11 +110,11 @@ uint64 sys_sysinfo(void)
 uint64 sys_procinfo(void){
     struct pinfo param;
     uint64 fdarray;
-    int fd0= -1; 
+    // int fd0= -1; 
     argaddr( 0, &fdarray);
     int out =  procinfo(&param);
     struct proc* p = myproc();
-      if(copyout(p->pagetable, fdarray, (char*)&fd0, sizeof(fd0)) < 0){
+      if(copyout(p->pagetable, fdarray, (char*)&param, sizeof(param)) < 0){
         return -1;
       }
   
