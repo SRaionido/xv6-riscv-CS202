@@ -12,13 +12,11 @@ struct proc proc[NPROC];
 
 struct proc *initproc;
 
-//////////////////////////////////
 struct pinfo {
 int ppid;
 int syscall_count;
 int page_usage;
 };
-//////////////////////////////////
 
 int nextpid = 1;
 struct spinlock pid_lock;
@@ -726,14 +724,12 @@ int sys_info (int n)
   return -1;
 }
 
-/////////////
-
 int procinfo (struct pinfo *in){
 
   
   in->syscall_count = myproc()->proc_syscall_count - 1; // get the syscall count 
   in->ppid = myproc()->parent->pid; 
-  in->page_usage = 0; // make a process 
+  in->page_usage = myproc()->sz / PGSIZE; // get the page usage
   //printf("\nprocinfo function was call \n");
   return 0; 
 
@@ -747,4 +743,3 @@ int syscall_count;
 int page_usage;
 };
 */
-////////////
