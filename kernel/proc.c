@@ -733,7 +733,7 @@ int procinfo (struct pinfo *in){
   
   in->syscall_count = myproc()->proc_syscall_count - 1; // get the syscall count 
   in->ppid = myproc()->parent->pid; 
-  in->page_usage = 0; // make a process 
+  in->page_usage = myproc()->sz /PGSIZE; // make a process 
   //printf("\nprocinfo function was call \n");
   return 0; 
 
