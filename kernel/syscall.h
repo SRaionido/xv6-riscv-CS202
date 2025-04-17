@@ -20,5 +20,5 @@
 #define SYS_link   19
 #define SYS_mkdir  20
 #define SYS_close  21
-#define SYS_sysinfo 22 // Lab 1 Part 1
-#define SYS_procinfo 23 // Lab 1 Part 2
+#define SYS_sysinfo 22 // Lab 1 - part 1
+#define SYS_procinfo 23// Lab 1 - part 2 

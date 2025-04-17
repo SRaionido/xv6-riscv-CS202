@@ -12,6 +12,12 @@ struct proc proc[NPROC];
 
 struct proc *initproc;
 
+struct pinfo {
+int ppid;
+int syscall_count;
+int page_usage;
+};
+
 int nextpid = 1;
 struct spinlock pid_lock;
 
@@ -124,6 +130,7 @@ allocproc(void)
 found:
   p->pid = allocpid();
   p->state = USED;
+  p->proc_syscall_count = 0; // Lab 1 - part 2 SL
 
   // Allocate a trapframe page.
   if((p->trapframe = (struct trapframe *)kalloc()) == 0){
@@ -703,7 +710,8 @@ int sys_info (int n)
   }
   else if (n == 1) {
     // printf("WHERE IS MY NUMBER OF SYSTEM CALLS?\n");
-    return syscall_counter;
+    syscall_counter++; //
+    return syscall_counter-1;
   }
   else if (n == 2) {
     // printf("The number of free memory pages\n");
@@ -715,3 +723,23 @@ int sys_info (int n)
   }
   return -1;
 }
+
+int procinfo (struct pinfo *in){
+
+  
+  in->syscall_count = myproc()->proc_syscall_count - 1; // get the syscall count 
+  in->ppid = myproc()->parent->pid; 
+  in->page_usage = myproc()->sz / PGSIZE; // get the page usage
+  //printf("\nprocinfo function was call \n");
+  return 0; 
+
+  //return -1; 
+}
+
+/*
+struct pinfo {
+int ppid;
+int syscall_count;
+int page_usage;
+};
+*/
