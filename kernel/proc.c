@@ -695,6 +695,9 @@ extern int syscall_counter; // IMPLEMENTED FOR SYSINFO (SL)
 int sys_info (int n)
 {
   // printf("HEYOOOOO %d\n", n);
+
+  // syscall_counter++;
+  
   if (n == 0) {
     // printf("PUT THE ACTIVE PROCESSES IN THE BAG\n");
     struct proc *p;
@@ -710,7 +713,6 @@ int sys_info (int n)
   }
   else if (n == 1) {
     // printf("WHERE IS MY NUMBER OF SYSTEM CALLS?\n");
-    syscall_counter++; //
     return syscall_counter-1;
   }
   else if (n == 2) {
