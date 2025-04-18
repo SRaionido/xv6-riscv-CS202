@@ -694,12 +694,10 @@ procdump(void)
 extern int syscall_counter; // IMPLEMENTED FOR SYSINFO (SL)
 int sys_info (int n)
 {
-  // printf("HEYOOOOO %d\n", n);
-
-  // syscall_counter++;
+  // printf("sysinfo test %d\n", n);
   
   if (n == 0) {
-    // printf("PUT THE ACTIVE PROCESSES IN THE BAG\n");
+    // printf("Put active process here\n");
     struct proc *p;
     int cnt = 0;
 
@@ -712,7 +710,7 @@ int sys_info (int n)
     return cnt;
   }
   else if (n == 1) {
-    // printf("WHERE IS MY NUMBER OF SYSTEM CALLS?\n");
+    // printf("Where the syscall count goes\n");
     return syscall_counter-1;
   }
   else if (n == 2) {
@@ -727,21 +725,8 @@ int sys_info (int n)
 }
 
 int procinfo (struct pinfo *in){
-
-  
   in->syscall_count = myproc()->proc_syscall_count - 1; // get the syscall count 
-  in->ppid = myproc()->parent->pid; 
-  in->page_usage = myproc()->sz / PGSIZE; // get the page usage
-  //printf("\nprocinfo function was call \n");
+  in->ppid = myproc()->parent->pid; // get the pid of the parent
+  in->page_usage = myproc()->sz / PGSIZE; // get the memory usage in pages
   return 0; 
-
-  //return -1; 
 }
-
-/*
-struct pinfo {
-int ppid;
-int syscall_count;
-int page_usage;
-};
-*/

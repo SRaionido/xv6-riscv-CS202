@@ -108,18 +108,21 @@ uint64 sys_sysinfo(void)
 }
 
 uint64 sys_procinfo(void){
-    struct pinfo param;
-    uint64 fdarray;
-    // int fd0= -1; 
-    argaddr( 0, &fdarray);
-    int out =  procinfo(&param);
-    struct proc* p = myproc();
-      if(copyout(p->pagetable, fdarray, (char*)&param, sizeof(param)) < 0){
-        return -1;
-      }
-  
+  struct pinfo param;
+  uint64 fdarray;
 
-  //param.ppid= p->pid;
+  argaddr( 0, &fdarray);
+  if (fdarray == 0){
+    return -1;
+  }
+  
+  int out =  procinfo(&param);
+  struct proc* p = myproc();
+
+  if(copyout(p->pagetable, fdarray, (char*)&param, sizeof(param)) < 0){
+    return -1;
+  }
+  
   return out; 
  
 }
