@@ -153,6 +153,8 @@ found:
   p->context.ra = (uint64)forkret;
   p->context.sp = p->kstack + PGSIZE;
 
+  p->syscall_count = 0; // Initialize syscall count
+
   return p;
 }
 
@@ -175,6 +177,7 @@ freeproc(struct proc *p)
   p->chan = 0;
   p->killed = 0;
   p->xstate = 0;
+  p->syscall_count = 0; // Reset syscall count on free
   p->state = UNUSED;
 }
 
